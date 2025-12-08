@@ -1,41 +1,201 @@
-,Algorithm,Feature_Set,Accuracy,Precision,Recall,F1_Score,Best_Params,Features_Used
-36,RandomForest,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7403,0.7325,0.7403,0.7308,"{'n_estimators': 274, 'max_depth': 26, 'min_samples_split': 9}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']"
-35,XGBoost,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7351,0.7272,0.7351,0.727,"{'n_estimators': 277, 'max_depth': 8, 'learning_rate': 0.038125002532382234, 'subsample': 0.5194361633860508, 'colsample_bytree': 0.8831267691763508}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']"
-38,KNN,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7298,0.7201,0.7298,0.7206,"{'n_neighbors': 18, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']"
-37,SVM (RBF),Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7049,0.6962,0.7049,0.6912,"{'C': 34.04299060184746, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']"
-26,RandomForest,Seq: Raw Accel + ODBA,0.711,0.6903,0.711,0.6902,"{'n_estimators': 152, 'max_depth': 22, 'min_samples_split': 5}","['x_g', 'y_g', 'z_g', 'odba']"
-31,RandomForest,Seq: Raw Accel + ODBA + VeDBA,0.709,0.6854,0.709,0.6859,"{'n_estimators': 149, 'max_depth': 29, 'min_samples_split': 7}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']"
-28,KNN,Seq: Raw Accel + ODBA,0.6998,0.6729,0.6998,0.6771,"{'n_neighbors': 17, 'weights': 'distance', 'p': 1}","['x_g', 'y_g', 'z_g', 'odba']"
-25,XGBoost,Seq: Raw Accel + ODBA,0.6993,0.6778,0.6993,0.6745,"{'n_estimators': 186, 'max_depth': 5, 'learning_rate': 0.25269048938415023, 'subsample': 0.9625330207022709, 'colsample_bytree': 0.9671869285448316}","['x_g', 'y_g', 'z_g', 'odba']"
-30,XGBoost,Seq: Raw Accel + ODBA + VeDBA,0.6967,0.6711,0.6967,0.6721,"{'n_estimators': 106, 'max_depth': 6, 'learning_rate': 0.256541554037955, 'subsample': 0.7931808530610283, 'colsample_bytree': 0.9448530193109006}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']"
-23,KNN,Seq: Raw Accel,0.6923,0.6644,0.6923,0.672,"{'n_neighbors': 13, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g']"
-33,KNN,Seq: Raw Accel + ODBA + VeDBA,0.6961,0.6669,0.6961,0.6717,"{'n_neighbors': 20, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']"
-3,KNN,Indiv: Raw Accel,0.6892,0.6626,0.6892,0.67,"{'n_neighbors': 11, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g']"
-21,RandomForest,Seq: Raw Accel,0.6938,0.6682,0.6938,0.6698,"{'n_estimators': 261, 'max_depth': 25, 'min_samples_split': 9}","['x_g', 'y_g', 'z_g']"
-1,RandomForest,Indiv: Raw Accel,0.6922,0.6672,0.6922,0.6691,"{'n_estimators': 73, 'max_depth': 25, 'min_samples_split': 10}","['x_g', 'y_g', 'z_g']"
-20,XGBoost,Seq: Raw Accel,0.6839,0.6628,0.6839,0.6562,"{'n_estimators': 152, 'max_depth': 6, 'learning_rate': 0.16425773901221885, 'subsample': 0.7876306423785344, 'colsample_bytree': 0.6877117809238806}","['x_g', 'y_g', 'z_g']"
-0,XGBoost,Indiv: Raw Accel,0.6852,0.6655,0.6852,0.6549,"{'n_estimators': 127, 'max_depth': 10, 'learning_rate': 0.03756872545145261, 'subsample': 0.6150219299996531, 'colsample_bytree': 0.7471608267122782}","['x_g', 'y_g', 'z_g']"
-27,SVM (RBF),Seq: Raw Accel + ODBA,0.685,0.7202,0.685,0.6494,"{'C': 84.13784415994843, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g', 'odba']"
-32,SVM (RBF),Seq: Raw Accel + ODBA + VeDBA,0.6794,0.6659,0.6794,0.6438,"{'C': 86.57890659579417, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']"
-22,SVM (RBF),Seq: Raw Accel,0.6683,0.6068,0.6683,0.6302,"{'C': 89.65567105186047, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g']"
-2,SVM (RBF),Indiv: Raw Accel,0.6668,0.6054,0.6668,0.6289,"{'C': 40.153314234979014, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g']"
-39,LogisticReg,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.6264,0.5953,0.6264,0.5866,{'C': 53.36576550022435},"['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']"
-34,LogisticReg,Seq: Raw Accel + ODBA + VeDBA,0.6197,0.5607,0.6197,0.571,{'C': 0.5031758412016333},"['x_g', 'y_g', 'z_g', 'odba', 'vedba']"
-29,LogisticReg,Seq: Raw Accel + ODBA,0.6194,0.5605,0.6194,0.5704,{'C': 34.17612460115479},"['x_g', 'y_g', 'z_g', 'odba']"
-4,LogisticReg,Indiv: Raw Accel,0.6185,0.5585,0.6185,0.5683,{'C': 1.2297725342785906},"['x_g', 'y_g', 'z_g']"
-24,LogisticReg,Seq: Raw Accel,0.6185,0.5585,0.6185,0.5683,{'C': 1.3730171150704622},"['x_g', 'y_g', 'z_g']"
-16,RandomForest,Indiv: Magnitude,0.4668,0.4433,0.4668,0.423,"{'n_estimators': 262, 'max_depth': 12, 'min_samples_split': 10}",['mag']
-15,XGBoost,Indiv: Magnitude,0.4724,0.4489,0.4724,0.4216,"{'n_estimators': 226, 'max_depth': 9, 'learning_rate': 0.019664992874282798, 'subsample': 0.6246353940588307, 'colsample_bytree': 0.811116213526321}",['mag']
-18,KNN,Indiv: Magnitude,0.4506,0.4186,0.4506,0.4156,"{'n_neighbors': 18, 'weights': 'uniform', 'p': 2}",['mag']
-17,SVM (RBF),Indiv: Magnitude,0.4744,0.345,0.4744,0.3873,"{'C': 6.6326018453624025, 'gamma': 'auto'}",['mag']
-19,LogisticReg,Indiv: Magnitude,0.4431,0.3702,0.4431,0.3569,{'C': 0.7936943494994639},['mag']
-11,RandomForest,Indiv: VeDBA,0.3664,0.3277,0.3664,0.3316,"{'n_estimators': 181, 'max_depth': 21, 'min_samples_split': 5}",['vedba']
-8,KNN,Indiv: ODBA,0.3677,0.3244,0.3677,0.3311,"{'n_neighbors': 15, 'weights': 'uniform', 'p': 1}",['odba']
-5,XGBoost,Indiv: ODBA,0.389,0.339,0.389,0.3279,"{'n_estimators': 258, 'max_depth': 8, 'learning_rate': 0.12339335987855755, 'subsample': 0.6990627769919622, 'colsample_bytree': 0.8577633592012142}",['odba']
-6,RandomForest,Indiv: ODBA,0.3755,0.3289,0.3755,0.3253,"{'n_estimators': 255, 'max_depth': 17, 'min_samples_split': 9}",['odba']
-10,XGBoost,Indiv: VeDBA,0.3837,0.332,0.3837,0.3228,"{'n_estimators': 115, 'max_depth': 6, 'learning_rate': 0.11546881391662009, 'subsample': 0.6105858588825932, 'colsample_bytree': 0.7940520365917214}",['vedba']
-13,KNN,Indiv: VeDBA,0.3598,0.3188,0.3598,0.3226,"{'n_neighbors': 17, 'weights': 'uniform', 'p': 1}",['vedba']
-7,SVM (RBF),Indiv: ODBA,0.39,0.2784,0.39,0.2965,"{'C': 35.216375708222465, 'gamma': 'scale'}",['odba']
-12,SVM (RBF),Indiv: VeDBA,0.3885,0.2772,0.3885,0.2939,"{'C': 19.58626783743074, 'gamma': 'scale'}",['vedba']
-14,LogisticReg,Indiv: VeDBA,0.3893,0.2786,0.3893,0.2923,{'C': 0.5199033177414883},['vedba']
-9,LogisticReg,Indiv: ODBA,0.3884,0.2775,0.3884,0.2909,{'C': 0.6193452717663587},['odba']
+,Algorithm,Feature_Set,Accuracy,Precision,Recall,F1_Score,Best_Params,Features_Used,time
+36,RandomForest,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7403,0.7322,0.7403,0.7316,"{'n_estimators': 290, 'max_depth': 21, 'min_samples_split': 4}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",5
+35,XGBoost,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7335,0.7247,0.7335,0.7262,"{'n_estimators': 201, 'max_depth': 8, 'learning_rate': 0.1658103949878805, 'subsample': 0.8246252273289509, 'colsample_bytree': 0.9707251944354469}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",5
+38,KNN,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7286,0.719,0.7286,0.7195,"{'n_neighbors': 19, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",5
+37,SVM (RBF),Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7071,0.6985,0.7071,0.6939,"{'C': 67.26530157218065, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",5
+26,RandomForest,Seq: Raw Accel + ODBA,0.7087,0.6863,0.7087,0.6878,"{'n_estimators': 206, 'max_depth': 26, 'min_samples_split': 6}","['x_g', 'y_g', 'z_g', 'odba']",5
+31,RandomForest,Seq: Raw Accel + ODBA + VeDBA,0.7046,0.6812,0.7046,0.6834,"{'n_estimators': 213, 'max_depth': 22, 'min_samples_split': 3}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",5
+30,XGBoost,Seq: Raw Accel + ODBA + VeDBA,0.7,0.6765,0.7,0.6779,"{'n_estimators': 135, 'max_depth': 9, 'learning_rate': 0.11188801956778555, 'subsample': 0.5872380160425269, 'colsample_bytree': 0.8678307028598217}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",5
+28,KNN,Seq: Raw Accel + ODBA,0.6995,0.6707,0.6995,0.6759,"{'n_neighbors': 19, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g', 'odba']",5
+33,KNN,Seq: Raw Accel + ODBA + VeDBA,0.6969,0.6695,0.6969,0.6732,"{'n_neighbors': 18, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",5
+23,KNN,Seq: Raw Accel,0.693,0.6656,0.693,0.6723,"{'n_neighbors': 14, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g']",5
+25,XGBoost,Seq: Raw Accel + ODBA,0.6926,0.6693,0.6926,0.6722,"{'n_estimators': 271, 'max_depth': 5, 'learning_rate': 0.2570247996149123, 'subsample': 0.5120552514297346, 'colsample_bytree': 0.8074056382212114}","['x_g', 'y_g', 'z_g', 'odba']",5
+21,RandomForest,Seq: Raw Accel,0.6938,0.6675,0.6938,0.6705,"{'n_estimators': 258, 'max_depth': 30, 'min_samples_split': 9}","['x_g', 'y_g', 'z_g']",5
+1,RandomForest,Indiv: Raw Accel,0.6918,0.6669,0.6918,0.6692,"{'n_estimators': 130, 'max_depth': 28, 'min_samples_split': 8}","['x_g', 'y_g', 'z_g']",5
+3,KNN,Indiv: Raw Accel,0.6891,0.6618,0.6891,0.669,"{'n_neighbors': 13, 'weights': 'distance', 'p': 1}","['x_g', 'y_g', 'z_g']",5
+20,XGBoost,Seq: Raw Accel,0.6792,0.6527,0.6792,0.6557,"{'n_estimators': 229, 'max_depth': 8, 'learning_rate': 0.1063982431717692, 'subsample': 0.8959864967416302, 'colsample_bytree': 0.8767737253243094}","['x_g', 'y_g', 'z_g']",5
+0,XGBoost,Indiv: Raw Accel,0.6852,0.665,0.6852,0.655,"{'n_estimators': 235, 'max_depth': 9, 'learning_rate': 0.025849714930276727, 'subsample': 0.5992569120480427, 'colsample_bytree': 0.9205349671064837}","['x_g', 'y_g', 'z_g']",5
+32,SVM (RBF),Seq: Raw Accel + ODBA + VeDBA,0.6798,0.65,0.6798,0.6442,"{'C': 89.53145360976202, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",5
+27,SVM (RBF),Seq: Raw Accel + ODBA,0.675,0.6126,0.675,0.6393,"{'C': 22.611170521871376, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g', 'odba']",5
+2,SVM (RBF),Indiv: Raw Accel,0.6686,0.6073,0.6686,0.6303,"{'C': 99.04317220506435, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g']",5
+22,SVM (RBF),Seq: Raw Accel,0.6675,0.6059,0.6675,0.6295,"{'C': 57.80773971036831, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g']",5
+39,LogisticReg,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.6266,0.5955,0.6266,0.5868,{'C': 3.7943409606371623},"['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",5
+34,LogisticReg,Seq: Raw Accel + ODBA + VeDBA,0.6199,0.5609,0.6199,0.5711,{'C': 0.35330638349555527},"['x_g', 'y_g', 'z_g', 'odba', 'vedba']",5
+29,LogisticReg,Seq: Raw Accel + ODBA,0.6194,0.5605,0.6194,0.5704,{'C': 4.456880313221662},"['x_g', 'y_g', 'z_g', 'odba']",5
+4,LogisticReg,Indiv: Raw Accel,0.6184,0.5583,0.6184,0.5681,{'C': 1.0680335820111304},"['x_g', 'y_g', 'z_g']",5
+24,LogisticReg,Seq: Raw Accel,0.6184,0.5585,0.6184,0.5681,{'C': 0.24646486118637126},"['x_g', 'y_g', 'z_g']",5
+15,XGBoost,Indiv: Magnitude,0.4721,0.4493,0.4721,0.4231,"{'n_estimators': 187, 'max_depth': 5, 'learning_rate': 0.24094458783929915, 'subsample': 0.5751048069751059, 'colsample_bytree': 0.5163930539730176}",['mag'],5
+16,RandomForest,Indiv: Magnitude,0.4644,0.4402,0.4644,0.4217,"{'n_estimators': 261, 'max_depth': 13, 'min_samples_split': 10}",['mag'],5
+18,KNN,Indiv: Magnitude,0.4506,0.4186,0.4506,0.4156,"{'n_neighbors': 18, 'weights': 'uniform', 'p': 1}",['mag'],5
+17,SVM (RBF),Indiv: Magnitude,0.474,0.3446,0.474,0.387,"{'C': 4.983711614915146, 'gamma': 'auto'}",['mag'],5
+19,LogisticReg,Indiv: Magnitude,0.443,0.3684,0.443,0.3567,{'C': 0.4759310307988957},['mag'],5
+11,RandomForest,Indiv: VeDBA,0.3637,0.3279,0.3637,0.3321,"{'n_estimators': 259, 'max_depth': 24, 'min_samples_split': 7}",['vedba'],5
+8,KNN,Indiv: ODBA,0.367,0.3285,0.367,0.3321,"{'n_neighbors': 14, 'weights': 'uniform', 'p': 1}",['odba'],5
+5,XGBoost,Indiv: ODBA,0.3895,0.3374,0.3895,0.3304,"{'n_estimators': 228, 'max_depth': 6, 'learning_rate': 0.23623911471017012, 'subsample': 0.5300440298319167, 'colsample_bytree': 0.8350795707985814}",['odba'],5
+6,RandomForest,Indiv: ODBA,0.3673,0.3218,0.3673,0.3256,"{'n_estimators': 279, 'max_depth': 20, 'min_samples_split': 9}",['odba'],5
+13,KNN,Indiv: VeDBA,0.3637,0.3184,0.3637,0.3256,"{'n_neighbors': 18, 'weights': 'uniform', 'p': 2}",['vedba'],5
+10,XGBoost,Indiv: VeDBA,0.3853,0.3334,0.3853,0.3245,"{'n_estimators': 101, 'max_depth': 6, 'learning_rate': 0.18991084407241063, 'subsample': 0.7808040747777744, 'colsample_bytree': 0.7077954361555081}",['vedba'],5
+7,SVM (RBF),Indiv: ODBA,0.39,0.2783,0.39,0.2965,"{'C': 13.660122958896084, 'gamma': 'auto'}",['odba'],5
+12,SVM (RBF),Indiv: VeDBA,0.3884,0.2771,0.3884,0.2938,"{'C': 13.574023555276048, 'gamma': 'scale'}",['vedba'],5
+14,LogisticReg,Indiv: VeDBA,0.3893,0.2786,0.3893,0.2923,{'C': 0.5630604814803529},['vedba'],5
+9,LogisticReg,Indiv: ODBA,0.3884,0.2775,0.3884,0.2909,{'C': 1.0357022877710604},['odba'],5
+35,XGBoost,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7742,0.7608,0.7742,0.761,"{'n_estimators': 298, 'max_depth': 6, 'learning_rate': 0.03859094318020437, 'subsample': 0.5621425262386399, 'colsample_bytree': 0.6985104912573543}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",30
+37,SVM (RBF),Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7634,0.7521,0.7634,0.7499,"{'C': 85.27029858722433, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",30
+36,RandomForest,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7639,0.7497,0.7639,0.7497,"{'n_estimators': 135, 'max_depth': 21, 'min_samples_split': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",30
+38,KNN,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7541,0.7439,0.7541,0.7459,"{'n_neighbors': 8, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",30
+30,XGBoost,Seq: Raw Accel + ODBA + VeDBA,0.7432,0.7164,0.7432,0.7227,"{'n_estimators': 136, 'max_depth': 10, 'learning_rate': 0.09143583036380712, 'subsample': 0.947484662271612, 'colsample_bytree': 0.8720660605345469}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",30
+25,XGBoost,Seq: Raw Accel + ODBA,0.7462,0.7188,0.7462,0.7176,"{'n_estimators': 80, 'max_depth': 8, 'learning_rate': 0.06261369184051317, 'subsample': 0.59805210385548, 'colsample_bytree': 0.7898572824966892}","['x_g', 'y_g', 'z_g', 'odba']",30
+31,RandomForest,Seq: Raw Accel + ODBA + VeDBA,0.7452,0.7186,0.7452,0.7165,"{'n_estimators': 104, 'max_depth': 12, 'min_samples_split': 5}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",30
+26,RandomForest,Seq: Raw Accel + ODBA,0.7447,0.7138,0.7447,0.7162,"{'n_estimators': 295, 'max_depth': 11, 'min_samples_split': 3}","['x_g', 'y_g', 'z_g', 'odba']",30
+28,KNN,Seq: Raw Accel + ODBA,0.7373,0.7075,0.7373,0.7111,"{'n_neighbors': 18, 'weights': 'distance', 'p': 1}","['x_g', 'y_g', 'z_g', 'odba']",30
+21,RandomForest,Seq: Raw Accel,0.7295,0.696,0.7295,0.7073,"{'n_estimators': 194, 'max_depth': 16, 'min_samples_split': 2}","['x_g', 'y_g', 'z_g']",30
+1,RandomForest,Indiv: Raw Accel,0.728,0.6985,0.728,0.7071,"{'n_estimators': 169, 'max_depth': 23, 'min_samples_split': 5}","['x_g', 'y_g', 'z_g']",30
+23,KNN,Seq: Raw Accel,0.7304,0.6985,0.7304,0.7065,"{'n_neighbors': 17, 'weights': 'distance', 'p': 1}","['x_g', 'y_g', 'z_g']",30
+3,KNN,Indiv: Raw Accel,0.7309,0.7002,0.7309,0.7056,"{'n_neighbors': 19, 'weights': 'distance', 'p': 1}","['x_g', 'y_g', 'z_g']",30
+33,KNN,Seq: Raw Accel + ODBA + VeDBA,0.7275,0.6979,0.7275,0.7041,"{'n_neighbors': 12, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",30
+0,XGBoost,Indiv: Raw Accel,0.7334,0.7561,0.7334,0.7015,"{'n_estimators': 273, 'max_depth': 7, 'learning_rate': 0.012812569905010677, 'subsample': 0.5585208301171382, 'colsample_bytree': 0.975976524204159}","['x_g', 'y_g', 'z_g']",30
+27,SVM (RBF),Seq: Raw Accel + ODBA,0.7314,0.675,0.7314,0.6994,"{'C': 41.61928758707773, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g', 'odba']",30
+32,SVM (RBF),Seq: Raw Accel + ODBA + VeDBA,0.7314,0.6745,0.7314,0.6988,"{'C': 29.42405369312948, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",30
+20,XGBoost,Seq: Raw Accel,0.7245,0.6674,0.7245,0.6918,"{'n_estimators': 52, 'max_depth': 5, 'learning_rate': 0.07757932482389436, 'subsample': 0.8838327247346252, 'colsample_bytree': 0.7926563849229173}","['x_g', 'y_g', 'z_g']",30
+39,LogisticReg,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7093,0.6921,0.7093,0.6839,{'C': 27.933116459192878},"['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",30
+22,SVM (RBF),Seq: Raw Accel,0.7137,0.6567,0.7137,0.6806,"{'C': 65.7333696659469, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g']",30
+2,SVM (RBF),Indiv: Raw Accel,0.7122,0.6555,0.7122,0.6787,"{'C': 17.800656828913294, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g']",30
+34,LogisticReg,Seq: Raw Accel + ODBA + VeDBA,0.6862,0.6282,0.6862,0.6448,{'C': 13.024845639340997},"['x_g', 'y_g', 'z_g', 'odba', 'vedba']",30
+29,LogisticReg,Seq: Raw Accel + ODBA,0.6842,0.6261,0.6842,0.6419,{'C': 5.425735379602733},"['x_g', 'y_g', 'z_g', 'odba']",30
+4,LogisticReg,Indiv: Raw Accel,0.6837,0.6249,0.6837,0.6413,{'C': 14.166708442240543},"['x_g', 'y_g', 'z_g']",30
+24,LogisticReg,Seq: Raw Accel,0.6837,0.6249,0.6837,0.6413,{'C': 39.63017123904445},"['x_g', 'y_g', 'z_g']",30
+16,RandomForest,Indiv: Magnitude,0.4865,0.4741,0.4865,0.4636,"{'n_estimators': 222, 'max_depth': 9, 'min_samples_split': 2}",['mag'],30
+15,XGBoost,Indiv: Magnitude,0.486,0.4651,0.486,0.4506,"{'n_estimators': 217, 'max_depth': 6, 'learning_rate': 0.02086615262578671, 'subsample': 0.9078663017243731, 'colsample_bytree': 0.5847847688854552}",['mag'],30
+18,KNN,Indiv: Magnitude,0.4584,0.4395,0.4584,0.4346,"{'n_neighbors': 14, 'weights': 'uniform', 'p': 1}",['mag'],30
+17,SVM (RBF),Indiv: Magnitude,0.4835,0.3571,0.4835,0.4036,"{'C': 0.18161863170222217, 'gamma': 'auto'}",['mag'],30
+19,LogisticReg,Indiv: Magnitude,0.4624,0.4321,0.4624,0.3978,{'C': 34.23685110408906},['mag'],30
+5,XGBoost,Indiv: ODBA,0.4235,0.3789,0.4235,0.3706,"{'n_estimators': 190, 'max_depth': 6, 'learning_rate': 0.026747540149563813, 'subsample': 0.680172017735579, 'colsample_bytree': 0.5259462274325784}",['odba'],30
+10,XGBoost,Indiv: VeDBA,0.4147,0.3776,0.4147,0.3544,"{'n_estimators': 170, 'max_depth': 5, 'learning_rate': 0.018560309540584945, 'subsample': 0.6704495123305518, 'colsample_bytree': 0.9562837359709531}",['vedba'],30
+11,RandomForest,Indiv: VeDBA,0.422,0.3791,0.422,0.3543,"{'n_estimators': 238, 'max_depth': 8, 'min_samples_split': 7}",['vedba'],30
+8,KNN,Indiv: ODBA,0.3778,0.3558,0.3778,0.3519,"{'n_neighbors': 9, 'weights': 'uniform', 'p': 2}",['odba'],30
+13,KNN,Indiv: VeDBA,0.3851,0.3414,0.3851,0.3493,"{'n_neighbors': 17, 'weights': 'uniform', 'p': 1}",['vedba'],30
+6,RandomForest,Indiv: ODBA,0.3699,0.3427,0.3699,0.3489,"{'n_estimators': 220, 'max_depth': 24, 'min_samples_split': 9}",['odba'],30
+14,LogisticReg,Indiv: VeDBA,0.4073,0.3008,0.4073,0.3258,{'C': 0.09402090457879365},['vedba'],30
+9,LogisticReg,Indiv: ODBA,0.4048,0.2989,0.4048,0.3228,{'C': 1.8638394802782747},['odba'],30
+7,SVM (RBF),Indiv: ODBA,0.4127,0.3226,0.4127,0.3176,"{'C': 0.44732219895861774, 'gamma': 'auto'}",['odba'],30
+12,SVM (RBF),Indiv: VeDBA,0.4112,0.3208,0.4112,0.3153,"{'C': 2.069761362202072, 'gamma': 'scale'}",['vedba'],30
+35,XGBoost,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7726,0.7611,0.7726,0.7577,"{'n_estimators': 54, 'max_depth': 10, 'learning_rate': 0.06441625837573652, 'subsample': 0.6427372724383602, 'colsample_bytree': 0.8464497622467877}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",45
+36,RandomForest,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7704,0.7525,0.7704,0.7543,"{'n_estimators': 280, 'max_depth': 26, 'min_samples_split': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",45
+38,KNN,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7454,0.7351,0.7454,0.7393,"{'n_neighbors': 5, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",45
+37,SVM (RBF),Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7528,0.7364,0.7528,0.7345,"{'C': 55.35718570400078, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",45
+30,XGBoost,Seq: Raw Accel + ODBA + VeDBA,0.7483,0.728,0.7483,0.7285,"{'n_estimators': 79, 'max_depth': 10, 'learning_rate': 0.10689810469292428, 'subsample': 0.5914471568324039, 'colsample_bytree': 0.8234426289011614}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",45
+26,RandomForest,Seq: Raw Accel + ODBA,0.7498,0.7197,0.7498,0.7249,"{'n_estimators': 159, 'max_depth': 22, 'min_samples_split': 10}","['x_g', 'y_g', 'z_g', 'odba']",45
+33,KNN,Seq: Raw Accel + ODBA + VeDBA,0.741,0.7193,0.741,0.7243,"{'n_neighbors': 8, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",45
+25,XGBoost,Seq: Raw Accel + ODBA,0.7454,0.7158,0.7454,0.723,"{'n_estimators': 246, 'max_depth': 8, 'learning_rate': 0.04223456501895631, 'subsample': 0.6469536989900599, 'colsample_bytree': 0.961640302474412}","['x_g', 'y_g', 'z_g', 'odba']",45
+31,RandomForest,Seq: Raw Accel + ODBA + VeDBA,0.7476,0.7294,0.7476,0.7228,"{'n_estimators': 248, 'max_depth': 13, 'min_samples_split': 9}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",45
+21,RandomForest,Seq: Raw Accel,0.7491,0.7002,0.7491,0.7221,"{'n_estimators': 158, 'max_depth': 23, 'min_samples_split': 7}","['x_g', 'y_g', 'z_g']",45
+0,XGBoost,Indiv: Raw Accel,0.7417,0.7157,0.7417,0.718,"{'n_estimators': 258, 'max_depth': 7, 'learning_rate': 0.04310477913540731, 'subsample': 0.7622724617836305, 'colsample_bytree': 0.8211567691110554}","['x_g', 'y_g', 'z_g']",45
+1,RandomForest,Indiv: Raw Accel,0.7403,0.6999,0.7403,0.7162,"{'n_estimators': 123, 'max_depth': 17, 'min_samples_split': 4}","['x_g', 'y_g', 'z_g']",45
+28,KNN,Seq: Raw Accel + ODBA,0.7403,0.7237,0.7403,0.716,"{'n_neighbors': 18, 'weights': 'distance', 'p': 1}","['x_g', 'y_g', 'z_g', 'odba']",45
+20,XGBoost,Seq: Raw Accel,0.7388,0.6859,0.7388,0.7091,"{'n_estimators': 164, 'max_depth': 4, 'learning_rate': 0.029641614172768303, 'subsample': 0.5463673934441367, 'colsample_bytree': 0.8307780567835327}","['x_g', 'y_g', 'z_g']",45
+23,KNN,Seq: Raw Accel,0.7366,0.7009,0.7366,0.7091,"{'n_neighbors': 19, 'weights': 'distance', 'p': 1}","['x_g', 'y_g', 'z_g']",45
+32,SVM (RBF),Seq: Raw Accel + ODBA + VeDBA,0.7366,0.6834,0.7366,0.7078,"{'C': 96.56773091677417, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",45
+3,KNN,Indiv: Raw Accel,0.7314,0.6943,0.7314,0.7063,"{'n_neighbors': 14, 'weights': 'distance', 'p': 1}","['x_g', 'y_g', 'z_g']",45
+27,SVM (RBF),Seq: Raw Accel + ODBA,0.7322,0.678,0.7322,0.7027,"{'C': 20.66105538753487, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g', 'odba']",45
+22,SVM (RBF),Seq: Raw Accel,0.7277,0.6763,0.7277,0.6945,"{'C': 97.76402287184571, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g']",45
+2,SVM (RBF),Indiv: Raw Accel,0.7226,0.6701,0.7226,0.6903,"{'C': 64.23409210219033, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g']",45
+39,LogisticReg,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.6895,0.6756,0.6895,0.6704,{'C': 10.5770472644275},"['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",45
+34,LogisticReg,Seq: Raw Accel + ODBA + VeDBA,0.6902,0.6369,0.6902,0.6543,{'C': 9.004111091894126},"['x_g', 'y_g', 'z_g', 'odba', 'vedba']",45
+24,LogisticReg,Seq: Raw Accel,0.6887,0.6349,0.6887,0.6522,{'C': 3.13555742318558},"['x_g', 'y_g', 'z_g']",45
+29,LogisticReg,Seq: Raw Accel + ODBA,0.6865,0.6321,0.6865,0.6495,{'C': 1.2798972440417913},"['x_g', 'y_g', 'z_g', 'odba']",45
+4,LogisticReg,Indiv: Raw Accel,0.6858,0.6315,0.6858,0.6493,{'C': 1.8042125521381558},"['x_g', 'y_g', 'z_g']",45
+15,XGBoost,Indiv: Magnitude,0.4982,0.509,0.4982,0.4734,"{'n_estimators': 247, 'max_depth': 4, 'learning_rate': 0.049307022773835286, 'subsample': 0.5457866457713967, 'colsample_bytree': 0.9850117954702879}",['mag'],45
+18,KNN,Indiv: Magnitude,0.4879,0.4884,0.4879,0.4683,"{'n_neighbors': 16, 'weights': 'uniform', 'p': 1}",['mag'],45
+16,RandomForest,Indiv: Magnitude,0.454,0.4469,0.454,0.4453,"{'n_estimators': 249, 'max_depth': 17, 'min_samples_split': 10}",['mag'],45
+17,SVM (RBF),Indiv: Magnitude,0.4908,0.423,0.4908,0.4155,"{'C': 78.08516475244532, 'gamma': 'scale'}",['mag'],45
+19,LogisticReg,Indiv: Magnitude,0.4621,0.4123,0.4621,0.4061,{'C': 1.8558499753667892},['mag'],45
+5,XGBoost,Indiv: ODBA,0.3929,0.35,0.3929,0.351,"{'n_estimators': 112, 'max_depth': 4, 'learning_rate': 0.09901333139782273, 'subsample': 0.8718371227560613, 'colsample_bytree': 0.9139821526655152}",['odba'],45
+11,RandomForest,Indiv: VeDBA,0.3701,0.3419,0.3701,0.3502,"{'n_estimators': 259, 'max_depth': 21, 'min_samples_split': 9}",['vedba'],45
+10,XGBoost,Indiv: VeDBA,0.3834,0.3356,0.3834,0.3445,"{'n_estimators': 116, 'max_depth': 10, 'learning_rate': 0.014679278907514715, 'subsample': 0.7668859525326785, 'colsample_bytree': 0.5444874220446267}",['vedba'],45
+13,KNN,Indiv: VeDBA,0.3672,0.3281,0.3672,0.342,"{'n_neighbors': 7, 'weights': 'uniform', 'p': 2}",['vedba'],45
+6,RandomForest,Indiv: ODBA,0.3826,0.3328,0.3826,0.3406,"{'n_estimators': 257, 'max_depth': 12, 'min_samples_split': 8}",['odba'],45
+14,LogisticReg,Indiv: VeDBA,0.4128,0.305,0.4128,0.3311,{'C': 2.23887708681019},['vedba'],45
+9,LogisticReg,Indiv: ODBA,0.4121,0.3041,0.4121,0.3306,{'C': 40.23440745849123},['odba'],45
+8,KNN,Indiv: ODBA,0.3569,0.3156,0.3569,0.3273,"{'n_neighbors': 14, 'weights': 'uniform', 'p': 2}",['odba'],45
+7,SVM (RBF),Indiv: ODBA,0.4106,0.3103,0.4106,0.3111,"{'C': 4.295869926963629, 'gamma': 'auto'}",['odba'],45
+12,SVM (RBF),Indiv: VeDBA,0.4113,0.313,0.4113,0.3111,"{'C': 90.24585797089748, 'gamma': 'auto'}",['vedba'],45
+35,XGBoost,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7738,0.7676,0.7738,0.7656,"{'n_estimators': 97, 'max_depth': 8, 'learning_rate': 0.09062034225126861, 'subsample': 0.9992098709269354, 'colsample_bytree': 0.8403838107566317}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",60
+36,RandomForest,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7698,0.7594,0.7698,0.7592,"{'n_estimators': 191, 'max_depth': 24, 'min_samples_split': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",60
+38,KNN,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7522,0.7358,0.7522,0.7378,"{'n_neighbors': 15, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",60
+37,SVM (RBF),Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7463,0.7337,0.7463,0.732,"{'C': 37.23425201372947, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",60
+26,RandomForest,Seq: Raw Accel + ODBA,0.7453,0.741,0.7453,0.7236,"{'n_estimators': 263, 'max_depth': 19, 'min_samples_split': 7}","['x_g', 'y_g', 'z_g', 'odba']",60
+31,RandomForest,Seq: Raw Accel + ODBA + VeDBA,0.7395,0.7312,0.7395,0.7166,"{'n_estimators': 271, 'max_depth': 15, 'min_samples_split': 5}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",60
+25,XGBoost,Seq: Raw Accel + ODBA,0.7297,0.7113,0.7297,0.7153,"{'n_estimators': 288, 'max_depth': 7, 'learning_rate': 0.06659179432227419, 'subsample': 0.500440552621098, 'colsample_bytree': 0.8142160366197096}","['x_g', 'y_g', 'z_g', 'odba']",60
+1,RandomForest,Indiv: Raw Accel,0.7356,0.7074,0.7356,0.7129,"{'n_estimators': 277, 'max_depth': 29, 'min_samples_split': 4}","['x_g', 'y_g', 'z_g']",60
+21,RandomForest,Seq: Raw Accel,0.7346,0.7046,0.7346,0.7121,"{'n_estimators': 106, 'max_depth': 28, 'min_samples_split': 4}","['x_g', 'y_g', 'z_g']",60
+23,KNN,Seq: Raw Accel,0.7297,0.7261,0.7297,0.7063,"{'n_neighbors': 15, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g']",60
+30,XGBoost,Seq: Raw Accel + ODBA + VeDBA,0.7267,0.6905,0.7267,0.7048,"{'n_estimators': 233, 'max_depth': 8, 'learning_rate': 0.030429081294297458, 'subsample': 0.6292941384234636, 'colsample_bytree': 0.9351586629632515}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",60
+3,KNN,Indiv: Raw Accel,0.7267,0.7133,0.7267,0.7043,"{'n_neighbors': 12, 'weights': 'distance', 'p': 1}","['x_g', 'y_g', 'z_g']",60
+33,KNN,Seq: Raw Accel + ODBA + VeDBA,0.7238,0.694,0.7238,0.7016,"{'n_neighbors': 10, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",60
+27,SVM (RBF),Seq: Raw Accel + ODBA,0.7297,0.6794,0.7297,0.7013,"{'C': 19.733995981743696, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g', 'odba']",60
+32,SVM (RBF),Seq: Raw Accel + ODBA + VeDBA,0.7228,0.6754,0.7228,0.6961,"{'C': 24.28716995239114, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",60
+20,XGBoost,Seq: Raw Accel,0.7169,0.6804,0.7169,0.6957,"{'n_estimators': 131, 'max_depth': 9, 'learning_rate': 0.061539562296337835, 'subsample': 0.6363336824983623, 'colsample_bytree': 0.8702434715481564}","['x_g', 'y_g', 'z_g']",60
+28,KNN,Seq: Raw Accel + ODBA,0.7071,0.6825,0.7071,0.6931,"{'n_neighbors': 6, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g', 'odba']",60
+0,XGBoost,Indiv: Raw Accel,0.7179,0.6688,0.7179,0.6889,"{'n_estimators': 195, 'max_depth': 8, 'learning_rate': 0.011386347195028202, 'subsample': 0.5879475044064537, 'colsample_bytree': 0.9511938397442073}","['x_g', 'y_g', 'z_g']",60
+2,SVM (RBF),Indiv: Raw Accel,0.715,0.6662,0.715,0.6858,"{'C': 89.21880336870666, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g']",60
+22,SVM (RBF),Seq: Raw Accel,0.714,0.6652,0.714,0.6847,"{'C': 79.42530854401907, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g']",60
+39,LogisticReg,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.6964,0.6735,0.6964,0.6783,{'C': 0.6850674642033638},"['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",60
+29,LogisticReg,Seq: Raw Accel + ODBA,0.7042,0.6541,0.7042,0.6727,{'C': 6.386584329833674},"['x_g', 'y_g', 'z_g', 'odba']",60
+24,LogisticReg,Seq: Raw Accel,0.7032,0.6517,0.7032,0.6714,{'C': 78.5585402307524},"['x_g', 'y_g', 'z_g']",60
+4,LogisticReg,Indiv: Raw Accel,0.7032,0.6517,0.7032,0.6714,{'C': 95.05346925372824},"['x_g', 'y_g', 'z_g']",60
+34,LogisticReg,Seq: Raw Accel + ODBA + VeDBA,0.7003,0.6502,0.7003,0.669,{'C': 3.762303021280635},"['x_g', 'y_g', 'z_g', 'odba', 'vedba']",60
+16,RandomForest,Indiv: Magnitude,0.5034,0.4834,0.5034,0.4715,"{'n_estimators': 78, 'max_depth': 5, 'min_samples_split': 7}",['mag'],60
+15,XGBoost,Indiv: Magnitude,0.4789,0.4517,0.4789,0.4556,"{'n_estimators': 178, 'max_depth': 8, 'learning_rate': 0.016381720499349148, 'subsample': 0.5941051516121436, 'colsample_bytree': 0.8524981794788831}",['mag'],60
+18,KNN,Indiv: Magnitude,0.4564,0.4282,0.4564,0.4368,"{'n_neighbors': 11, 'weights': 'uniform', 'p': 2}",['mag'],60
+17,SVM (RBF),Indiv: Magnitude,0.4858,0.3738,0.4858,0.4152,"{'C': 9.85703415754716, 'gamma': 'auto'}",['mag'],60
+19,LogisticReg,Indiv: Magnitude,0.4623,0.3963,0.4623,0.4048,{'C': 7.272058626209138},['mag'],60
+8,KNN,Indiv: ODBA,0.379,0.3459,0.379,0.3507,"{'n_neighbors': 7, 'weights': 'uniform', 'p': 2}",['odba'],60
+14,LogisticReg,Indiv: VeDBA,0.4329,0.3265,0.4329,0.3504,{'C': 0.356289336412005},['vedba'],60
+10,XGBoost,Indiv: VeDBA,0.4104,0.3598,0.4104,0.3473,"{'n_estimators': 81, 'max_depth': 4, 'learning_rate': 0.012559556706643094, 'subsample': 0.9128581136731879, 'colsample_bytree': 0.5103912161921533}",['vedba'],60
+9,LogisticReg,Indiv: ODBA,0.43,0.3246,0.43,0.3471,{'C': 7.213269612216578},['odba'],60
+11,RandomForest,Indiv: VeDBA,0.3879,0.3381,0.3879,0.3414,"{'n_estimators': 61, 'max_depth': 8, 'min_samples_split': 8}",['vedba'],60
+5,XGBoost,Indiv: ODBA,0.3643,0.3234,0.3643,0.3358,"{'n_estimators': 184, 'max_depth': 8, 'learning_rate': 0.026756979707914384, 'subsample': 0.6975663324093514, 'colsample_bytree': 0.5453161572507162}",['odba'],60
+13,KNN,Indiv: VeDBA,0.3643,0.3237,0.3643,0.3357,"{'n_neighbors': 17, 'weights': 'uniform', 'p': 1}",['vedba'],60
+7,SVM (RBF),Indiv: ODBA,0.4202,0.3322,0.4202,0.323,"{'C': 0.40199224724897936, 'gamma': 'auto'}",['odba'],60
+12,SVM (RBF),Indiv: VeDBA,0.4221,0.3388,0.4221,0.3224,"{'C': 48.39470564729345, 'gamma': 'scale'}",['vedba'],60
+6,RandomForest,Indiv: ODBA,0.3457,0.3129,0.3457,0.3218,"{'n_estimators': 158, 'max_depth': 16, 'min_samples_split': 7}",['odba'],60
+35,XGBoost,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.769,0.7663,0.769,0.7591,"{'n_estimators': 298, 'max_depth': 6, 'learning_rate': 0.05573715287330689, 'subsample': 0.8624002776968867, 'colsample_bytree': 0.9422595653665259}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",90
+37,SVM (RBF),Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7734,0.7616,0.7734,0.759,"{'C': 78.64419437452767, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",90
+36,RandomForest,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7675,0.7458,0.7675,0.7526,"{'n_estimators': 131, 'max_depth': 16, 'min_samples_split': 2}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",90
+38,KNN,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.7646,0.779,0.7646,0.7425,"{'n_neighbors': 19, 'weights': 'distance', 'p': 1}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",90
+26,RandomForest,Seq: Raw Accel + ODBA,0.7588,0.7536,0.7588,0.7419,"{'n_estimators': 280, 'max_depth': 8, 'min_samples_split': 2}","['x_g', 'y_g', 'z_g', 'odba']",90
+31,RandomForest,Seq: Raw Accel + ODBA + VeDBA,0.7573,0.7461,0.7573,0.7388,"{'n_estimators': 269, 'max_depth': 19, 'min_samples_split': 7}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",90
+23,KNN,Seq: Raw Accel,0.7442,0.7301,0.7442,0.7297,"{'n_neighbors': 7, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g']",90
+32,SVM (RBF),Seq: Raw Accel + ODBA + VeDBA,0.7529,0.7095,0.7529,0.7285,"{'C': 8.935546804583181, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",90
+3,KNN,Indiv: Raw Accel,0.7485,0.7343,0.7485,0.7273,"{'n_neighbors': 19, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g']",90
+28,KNN,Seq: Raw Accel + ODBA,0.7471,0.7022,0.7471,0.7237,"{'n_neighbors': 17, 'weights': 'distance', 'p': 2}","['x_g', 'y_g', 'z_g', 'odba']",90
+27,SVM (RBF),Seq: Raw Accel + ODBA,0.7471,0.7042,0.7471,0.723,"{'C': 11.386125108472744, 'gamma': 'scale'}","['x_g', 'y_g', 'z_g', 'odba']",90
+2,SVM (RBF),Indiv: Raw Accel,0.7442,0.701,0.7442,0.7194,"{'C': 9.387310844537865, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g']",90
+33,KNN,Seq: Raw Accel + ODBA + VeDBA,0.7398,0.7163,0.7398,0.7192,"{'n_neighbors': 14, 'weights': 'distance', 'p': 1}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",90
+22,SVM (RBF),Seq: Raw Accel,0.7398,0.6969,0.7398,0.7153,"{'C': 15.994216242933932, 'gamma': 'auto'}","['x_g', 'y_g', 'z_g']",90
+1,RandomForest,Indiv: Raw Accel,0.7281,0.7063,0.7281,0.7124,"{'n_estimators': 289, 'max_depth': 25, 'min_samples_split': 3}","['x_g', 'y_g', 'z_g']",90
+25,XGBoost,Seq: Raw Accel + ODBA,0.7339,0.6944,0.7339,0.7121,"{'n_estimators': 99, 'max_depth': 8, 'learning_rate': 0.026043725482685246, 'subsample': 0.5101539229627661, 'colsample_bytree': 0.776996645543031}","['x_g', 'y_g', 'z_g', 'odba']",90
+21,RandomForest,Seq: Raw Accel,0.7237,0.7116,0.7237,0.7092,"{'n_estimators': 168, 'max_depth': 16, 'min_samples_split': 5}","['x_g', 'y_g', 'z_g']",90
+30,XGBoost,Seq: Raw Accel + ODBA + VeDBA,0.7281,0.7021,0.7281,0.7079,"{'n_estimators': 300, 'max_depth': 8, 'learning_rate': 0.028221063943496084, 'subsample': 0.8839223910944604, 'colsample_bytree': 0.7014375442081255}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",90
+0,XGBoost,Indiv: Raw Accel,0.7208,0.7005,0.7208,0.7069,"{'n_estimators': 296, 'max_depth': 5, 'learning_rate': 0.054014385410629945, 'subsample': 0.8845950887457785, 'colsample_bytree': 0.7627732342562131}","['x_g', 'y_g', 'z_g']",90
+20,XGBoost,Seq: Raw Accel,0.7076,0.6925,0.7076,0.6968,"{'n_estimators': 292, 'max_depth': 3, 'learning_rate': 0.16106269847748275, 'subsample': 0.614381548621132, 'colsample_bytree': 0.7134881004177527}","['x_g', 'y_g', 'z_g']",90
+39,LogisticReg,Seq: Raw Accel + ODBA + VeDBA + Magnitude,0.6959,0.6814,0.6959,0.6756,{'C': 19.40402858570251},"['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",90
+24,LogisticReg,Seq: Raw Accel,0.7003,0.653,0.7003,0.672,{'C': 23.201435778386703},"['x_g', 'y_g', 'z_g']",90
+4,LogisticReg,Indiv: Raw Accel,0.7003,0.653,0.7003,0.672,{'C': 40.34106808207375},"['x_g', 'y_g', 'z_g']",90
+29,LogisticReg,Seq: Raw Accel + ODBA,0.6988,0.6528,0.6988,0.671,{'C': 95.50019823133208},"['x_g', 'y_g', 'z_g', 'odba']",90
+34,LogisticReg,Seq: Raw Accel + ODBA + VeDBA,0.6959,0.6491,0.6959,0.6674,{'C': 73.17856256911145},"['x_g', 'y_g', 'z_g', 'odba', 'vedba']",90
+15,XGBoost,Indiv: Magnitude,0.519,0.5256,0.519,0.4774,"{'n_estimators': 233, 'max_depth': 4, 'learning_rate': 0.010531606223807083, 'subsample': 0.5826004423374709, 'colsample_bytree': 0.8370170343072365}",['mag'],90
+16,RandomForest,Indiv: Magnitude,0.5088,0.5138,0.5088,0.4684,"{'n_estimators': 176, 'max_depth': 5, 'min_samples_split': 7}",['mag'],90
+18,KNN,Indiv: Magnitude,0.4795,0.4465,0.4795,0.4563,"{'n_neighbors': 19, 'weights': 'uniform', 'p': 1}",['mag'],90
+17,SVM (RBF),Indiv: Magnitude,0.481,0.3606,0.481,0.4071,"{'C': 12.865673619661429, 'gamma': 'scale'}",['mag'],90
+19,LogisticReg,Indiv: Magnitude,0.4591,0.3758,0.4591,0.3989,{'C': 1.8034661575561706},['mag'],90
+8,KNN,Indiv: ODBA,0.402,0.3666,0.402,0.3775,"{'n_neighbors': 15, 'weights': 'uniform', 'p': 1}",['odba'],90
+13,KNN,Indiv: VeDBA,0.3977,0.3668,0.3977,0.3683,"{'n_neighbors': 18, 'weights': 'uniform', 'p': 1}",['vedba'],90
+5,XGBoost,Indiv: ODBA,0.3845,0.3542,0.3845,0.3648,"{'n_estimators': 208, 'max_depth': 10, 'learning_rate': 0.02079498927025155, 'subsample': 0.5269659870328911, 'colsample_bytree': 0.9100257391676447}",['odba'],90
+11,RandomForest,Indiv: VeDBA,0.3933,0.3532,0.3933,0.3605,"{'n_estimators': 66, 'max_depth': 9, 'min_samples_split': 9}",['vedba'],90
+10,XGBoost,Indiv: VeDBA,0.405,0.3509,0.405,0.3566,"{'n_estimators': 132, 'max_depth': 3, 'learning_rate': 0.06219329665820232, 'subsample': 0.6427093447332883, 'colsample_bytree': 0.6315423684699535}",['vedba'],90
+6,RandomForest,Indiv: ODBA,0.3962,0.361,0.3962,0.3556,"{'n_estimators': 288, 'max_depth': 7, 'min_samples_split': 6}",['odba'],90
+14,LogisticReg,Indiv: VeDBA,0.4079,0.3018,0.4079,0.3374,{'C': 0.5412591078932839},['vedba'],90
+12,SVM (RBF),Indiv: VeDBA,0.424,0.3251,0.424,0.337,"{'C': 1.1410083142001106, 'gamma': 'auto'}",['vedba'],90
+9,LogisticReg,Indiv: ODBA,0.4064,0.301,0.4064,0.3364,{'C': 3.688768597328401},['odba'],90
+7,SVM (RBF),Indiv: ODBA,0.424,0.326,0.424,0.3354,"{'C': 0.24572770386139672, 'gamma': 'scale'}",['odba'],90
