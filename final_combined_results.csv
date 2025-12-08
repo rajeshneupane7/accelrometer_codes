@@ -1,0 +1,5 @@
+Algorithm,Features,Accuracy,F1,Params/Steps,Time_Interval,Sequence_Length
+XGBoost,All,0.3836214422909027,0.2127249643395036,"{'n_estimators': 92, 'max_depth': 6, 'learning_rate': 0.05210890100076211}",10,1
+RandomForest,All,0.3836214422909027,0.2127249643395036,"{'n_estimators': 97, 'max_depth': 13}",10,1
+LSTM,All (Seq),0.3659305993690852,0.19606443199452137,Steps=10,10,10
+RNN,All (Seq),0.3659305993690852,0.19606443199452137,Steps=10,10,10
