@@ -112,7 +112,7 @@ class DeepActivityModeler:
 
         elif model_name == "CNN":
             n_filters = trial.suggest_int("n_filters", 16, 64)
-            kernel_size = trial.suggest_int("kernel_size", 3, 7)
+            kernel_size = trial.suggest_int("kernel_size", 3, 7, 8)
 
             model = CNN1DClassifier(
                 n_features=X.shape[1],

@@ -1,0 +1,9 @@
+Model,Feature_Set,Window,Best_F1,Best_Params,Features_Used,resample_interval,window_size
+LSTM,Seq: Raw Accel + ODBA + VeDBA + Magnitude,10,0.5637,"{'lr': 0.0017795505534441937, 'batch_size': 32, 'hidden_dim': 57, 'n_layers': 1, 'dropout': 0.16474284899713865}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",300,10
+LSTM,Seq: Raw Accel + ODBA + VeDBA,10,0.533,"{'lr': 0.0019805184999998997, 'batch_size': 64, 'hidden_dim': 118, 'n_layers': 2, 'dropout': 0.48100387704940006}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",300,10
+CNN,Seq: Raw Accel + ODBA + VeDBA + Magnitude,10,0.5098,"{'lr': 0.00943289028783098, 'batch_size': 64, 'n_filters': 54, 'kernel_size': 7}","['x_g', 'y_g', 'z_g', 'odba', 'vedba', 'mag']",300,10
+CNN,Seq: Raw Accel,10,0.5034,"{'lr': 0.0037643003560485474, 'batch_size': 32, 'n_filters': 43, 'kernel_size': 3}","['x_g', 'y_g', 'z_g']",300,10
+CNN,Seq: Raw Accel + ODBA,10,0.4803,"{'lr': 0.002676652944802856, 'batch_size': 32, 'n_filters': 32, 'kernel_size': 3}","['x_g', 'y_g', 'z_g', 'odba']",300,10
+CNN,Seq: Raw Accel + ODBA + VeDBA,10,0.3434,"{'lr': 0.0011629513052213462, 'batch_size': 128, 'n_filters': 54, 'kernel_size': 7}","['x_g', 'y_g', 'z_g', 'odba', 'vedba']",300,10
+LSTM,Seq: Raw Accel,10,0.2283,"{'lr': 0.0002784598240693943, 'batch_size': 32, 'hidden_dim': 82, 'n_layers': 3, 'dropout': 0.33887551933037596}","['x_g', 'y_g', 'z_g']",300,10
+LSTM,Seq: Raw Accel + ODBA,10,0.1785,"{'lr': 0.0002069005988392651, 'batch_size': 64, 'hidden_dim': 40, 'n_layers': 3, 'dropout': 0.17449432560539851}","['x_g', 'y_g', 'z_g', 'odba']",300,10

@@ -93,10 +93,10 @@ def run_timeseries_pipeline(pipeline, resample_intervals,window_sizes, n_trials)
 
 
 
-            results_df["resample_interval"] = interval
+            results_df["resample_interval"] = t
             results_df["window_size"] = window
-            resampled_map[(interval, window)]= df_ready
-            temp_df.append(results_df)
+            resampled_map[(t, window)]= df_ready
+            temp_results.append(results_df)
 
 
             if not temp_results:
@@ -139,7 +139,7 @@ def run_timeseries_pipeline(pipeline, resample_intervals,window_sizes, n_trials)
 
 
 
-    dataset = WindowedTimeSeriesDataset(X, y, window_size=best_time)
+    dataset = WindowedTimeSeriesDataset(X, y, window_size=best_window)
 
     loader = DataLoader(
 
@@ -291,11 +291,11 @@ if __name__ == "__main__":
 
     parser.add_argument("--data_dir", required=True, help="Directory with zip files")
 
-    parser.add_argument("--resample_intervals", default="1,5,10")
+    parser.add_argument("--resample_intervals", default="300")
 
-    parser.add_argument("--windows", default="10,15,20", help="Comma-separated windows")
+    parser.add_argument("--windows", default="10", help="Comma-separated windows")
 
-    parser.add_argument("--n_trials", type=int, default=20, help="Optuna trials")
+    parser.add_argument("--n_trials", type=int, default=2, help="Optuna trials")
 
     parser.add_argument("--output_dir", default="results", help="Output directory")
 
