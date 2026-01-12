@@ -95,23 +95,49 @@ class AccelPipeline:
         self.df['vedba'] = np.sqrt(dyn['x_d']**2 + dyn['y_d']**2 + dyn['z_d']**2)
         return self.df
 
-    def resample_data(self, interval_seconds=5):
-        print(f"--- Resampling data to {interval_seconds} second windows ---")
+    def resample_and_label(self, interval_seconds=10, coherence_threshold=0.7):
+        """
+        Resamples data into windows. 
+        ASSIGN LABELS based on threshold:
+        If > 70% of the raw samples in the window are 'Grazing', the window is 'Grazing'.
+        Otherwise, the window is discarded (Ambiguous).
+        """
+        print(f"--- Resampling ({interval_seconds}s) with Threshold {coherence_threshold*100}% ---")
         
-        # Aggregation Dictionary
+        # Custom Aggregator for Labels
+        def threshold_labeler(x):
+            if x.empty: return np.nan
+            counts = x.value_counts(normalize=True)
+            # Check if the most frequent label crosses the threshold
+            if counts.iloc[0] >= coherence_threshold:
+                return counts.index[0]
+            return np.nan # Drop this window (too messy/transitioning)
+
+        # Feature Aggregators
         agg_dict = {
-            'x_g': 'mean', 'y_g': 'mean', 'z_g': 'mean',
-            'mag': 'mean', 'enmo': 'mean',
-            'odba': 'mean', 'vedba': 'mean',
-            # UPDATED: Mode for behavioral_category
-            'behavioral_category': lambda x: x.mode()[0] if not x.mode().empty else np.nan
+            'x_g': ['mean', 'std', 'min', 'max'],
+            'y_g': ['mean', 'std', 'min', 'max'],
+            'z_g': ['mean', 'std', 'min', 'max'],
+            'mag': ['mean', 'std'],      
+            #'enmo': ['mean', 'max'],
+            #'vebda':['mean', 'std'], 
+            'odba': ['mean', 'std'],    
+            'behavioral_category': threshold_labeler # <--- LOGIC APPLIED HERE
         }
-        
-        resampled_df = (
+
+        resampled = (
             self.df.set_index('local_ts')
             .groupby('subject')
             .resample(f'{interval_seconds}s')
             .agg(agg_dict)
         )
         
-        return resampled_df.dropna().reset_index()
+        # Flatten columns
+        resampled.columns = [f"{c[0]}_{c[1]}" if c[1] else c[0] for c in resampled.columns]
+        resampled = resampled.rename(columns={'behavioral_category_threshold_labeler': 'behavioral_category'})
+        
+        # DROP windows that failed the threshold check
+        final_df = resampled.dropna(subset=['behavioral_category']).reset_index()
+        print(final_df.columns)
+        print(f"Generated {len(final_df)} labeled windows.")
+        return final_df

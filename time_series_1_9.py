@@ -20,8 +20,9 @@ from torch.utils.data import DataLoader
 
 
 
-from pipeline_utils import load_all_zips, AccelPipeline
+#from pipeline_utils import load_all_zips, AccelPipeline
 
+from pipepline_utils  import load_all_zips, AccelPipeline
 from time_series_utils import (
 
     DeepActivityModeler,
@@ -42,7 +43,7 @@ from time_series_utils import (
 
 # ======================================================
 
-def run_timeseries_pipeline(pipeline, resample_intervals,window_sizes, n_trials):
+def run_timeseries_pipeline(pipeline, thresholds, resample_intervals,window_sizes, n_trials):
 
     temp_results = []
 
@@ -51,52 +52,54 @@ def run_timeseries_pipeline(pipeline, resample_intervals,window_sizes, n_trials)
 
 
     for t in resample_intervals:
+        for thresh in thresholds:
 
-        print(f"\n⏱ Running resample = {t}s")
-
-
-
-        df_ready = pipeline.resample_data(interval_seconds=t)
+            print(f"\n⏱ Running resample = {t}s")
 
 
 
-        if df_ready is None or df_ready.empty:
-
-            continue
-
-        if "behavioral_category" not in df_ready.columns:
-
-            continue
+            df_ready = pipeline.resample_and_label(interval_seconds=t, coherence_threshold=thresh)
 
 
 
+            if df_ready is None or df_ready.empty:
 
+                continue
 
-        for window in window_sizes:
-            modeler = DeepActivityModeler(df_ready, target_col="behavioral_category")
-
-
-
-            results_df = modeler.run_optuna_experiments(
-
-            window_size=window,
-
-            n_trials=n_trials
-
-                )
-
-
-
-            if results_df is None or results_df.empty:
+            if "behavioral_category" not in df_ready.columns:
 
                 continue
 
 
 
-            results_df["resample_interval"] = t
-            results_df["window_size"] = window
-            resampled_map[(t, window)]= df_ready
-            temp_results.append(results_df)
+
+
+            for window in window_sizes:
+                modeler = DeepActivityModeler(df_ready, target_col="behavioral_category")
+
+
+
+                results_df = modeler.run_optuna_experiments(
+
+                window_size=window,
+
+                n_trials=n_trials
+
+                    )
+
+
+
+                if results_df is None or results_df.empty:
+
+                    continue
+
+
+
+                results_df["resample_interval"] = t
+                results_df["window_size"] = window
+                results_df['threshold']= thresh
+                resampled_map[(t, window)]= df_ready
+                temp_results.append(results_df)
 
 
             if not temp_results:
@@ -256,11 +259,16 @@ def main(args):
         int(x) for x in args.windows.split(",")
     ]
 
+    thresholds=[
+        float(x) for x in args.thresholds.split(",")
+    ]
+
     model, le, results_df = run_timeseries_pipeline(
         pipeline=pipeline,
         resample_intervals=resample_intervals,
         window_sizes=window_sizes,
-        n_trials=args.n_trials)
+        n_trials=args.n_trials,
+        thresholds=thresholds)
 
 
     results_path = os.path.join(args.output_dir, "results.csv")
@@ -291,13 +299,15 @@ if __name__ == "__main__":
 
     parser.add_argument("--data_dir", required=True, help="Directory with zip files")
 
-    parser.add_argument("--resample_intervals", default="300")
+    parser.add_argument("--resample_intervals", default="30")
 
     parser.add_argument("--windows", default="10", help="Comma-separated windows")
 
     parser.add_argument("--n_trials", type=int, default=2, help="Optuna trials")
 
     parser.add_argument("--output_dir", default="results", help="Output directory")
+
+    parser.add_argument("--thresholds", default="0.6", help="purity to select the windows")
 
 
 
