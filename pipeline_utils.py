@@ -27,6 +27,46 @@ def load_all_zips(data_dir):
                 print(f"Error processing {zip_path}: {e}")
     return pd.concat(all_dfs, ignore_index=True) if all_dfs else pd.DataFrame()
 
+import os
+import zipfile
+import tempfile
+import pandas as pd
+
+def load_test_data(data_dir):
+    all_dfs = []
+
+    if not os.path.isdir(data_dir):
+        return pd.DataFrame()
+
+    for fname in os.listdir(data_dir):
+        if not fname.lower().endswith(".zip"):
+            continue
+
+        zip_path = os.path.join(data_dir, fname)
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            try:
+                with zipfile.ZipFile(zip_path, "r") as zf:
+                    zf.extractall(temp_dir)
+
+                for root, _, files in os.walk(temp_dir):
+                    for file in files:
+                        if file.lower().endswith((".xls", ".xlsx")):
+                            file_path = os.path.join(root, file)
+                            try:
+                                df = pd.read_excel(file_path)
+                                all_dfs.append(df)
+                            except Exception as e:
+                                print(f"Failed to read {file_path}: {e}")
+
+            except zipfile.BadZipFile:
+                print(f"Skipping invalid zip file: {zip_path}")
+
+    if not all_dfs:
+        return pd.DataFrame()
+
+    return pd.concat(all_dfs, ignore_index=True)
+
 
 import pandas as pd
 import numpy as np

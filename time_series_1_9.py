@@ -22,16 +22,15 @@ from torch.utils.data import DataLoader
 
 #from pipeline_utils import load_all_zips, AccelPipeline
 
-from pipepline_utils  import load_all_zips, AccelPipeline
+from pipeline_utils  import load_all_zips, AccelPipeline
 from time_series_utils import (
 
     DeepActivityModeler,
-
     WindowedTimeSeriesDataset,
-
     LSTMClassifier,
-
-    CNN1DClassifier
+    CNN1DClassifier,
+    BiLSTMClassifier,  # <--- ADD THIS
+    GRUClassifier
 
 )
 
@@ -185,7 +184,23 @@ def run_timeseries_pipeline(pipeline, thresholds, resample_intervals,window_size
             n_classes=n_classes
 
         )
+    elif best_model=='GRU':
+        model = GRUClassifier(
+            n_features=X_test.shape[1],
+            hidden_dim=best_params["hidden_dim"],
+            n_layers=best_params["n_layers"],
+            n_classes=n_classes,
+            dropout=best_params["dropout"]
+        )
 
+    elif best_model=='BiLSTM':
+        model = BiLSTMClassifier(
+            n_features=X_test.shape[1],
+            hidden_dim=best_params["hidden_dim"],
+            n_layers=best_params["n_layers"],
+            n_classes=n_classes,
+            dropout=best_params["dropout"]
+        )
     else:
 
         raise ValueError(f"Unknown model {best_model}")
@@ -299,15 +314,15 @@ if __name__ == "__main__":
 
     parser.add_argument("--data_dir", required=True, help="Directory with zip files")
 
-    parser.add_argument("--resample_intervals", default="30")
+    parser.add_argument("--resample_intervals", default="20")
 
-    parser.add_argument("--windows", default="10", help="Comma-separated windows")
+    parser.add_argument("--windows", default="25", help="Comma-separated windows")
 
-    parser.add_argument("--n_trials", type=int, default=2, help="Optuna trials")
+    parser.add_argument("--n_trials", type=int, default=20, help="Optuna trials")
 
     parser.add_argument("--output_dir", default="results", help="Output directory")
 
-    parser.add_argument("--thresholds", default="0.6", help="purity to select the windows")
+    parser.add_argument("--thresholds", default="0.8", help="purity to select the windows")
 
 
 

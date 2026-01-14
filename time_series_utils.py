@@ -32,8 +32,9 @@ class WindowedTimeSeriesDataset(Dataset):
         )
 
 # =====================================================
-# 2. MODELS
+# 2. MODELS (Includes LSTM, BiLSTM, GRU, CNN)
 # =====================================================
+
 class LSTMClassifier(nn.Module):
     def __init__(self, n_features, hidden_dim, n_layers, n_classes, dropout):
         super().__init__()
@@ -50,6 +51,47 @@ class LSTMClassifier(nn.Module):
         _, (h, _) = self.lstm(x)
         return self.fc(h[-1])
 
+class BiLSTMClassifier(nn.Module):
+    def __init__(self, n_features, hidden_dim, n_layers, n_classes, dropout):
+        super().__init__()
+        self.lstm = nn.LSTM(
+            n_features,
+            hidden_dim,
+            num_layers=n_layers,
+            batch_first=True,
+            dropout=dropout,
+            bidirectional=True # <--- Enable Bidirectional
+        )
+        # Input size is hidden_dim * 2 because of bidirectionality
+        self.fc = nn.Linear(hidden_dim * 2, n_classes)
+
+    def forward(self, x):
+        # output shape: (batch, seq_len, num_directions * hidden_dim)
+        # h_n shape: (num_layers * num_directions, batch, hidden_dim)
+        _, (h, _) = self.lstm(x)
+        
+        # We need to concatenate the final forward state (h[-2]) and backward state (h[-1])
+        # If num_layers=1: h[0] is forward, h[1] is backward
+        # If num_layers=2: h[0], h[1] are layer 1 fwd/bwd, h[2], h[3] are layer 2 fwd/bwd
+        # We always want the last layer.
+        h_cat = torch.cat((h[-2,:,:], h[-1,:,:]), dim=1)
+        return self.fc(h_cat)
+
+class GRUClassifier(nn.Module):
+    def __init__(self, n_features, hidden_dim, n_layers, n_classes, dropout):
+        super().__init__()
+        self.gru = nn.GRU(
+            n_features,
+            hidden_dim,
+            num_layers=n_layers,
+            batch_first=True,
+            dropout=dropout
+        )
+        self.fc = nn.Linear(hidden_dim, n_classes)
+
+    def forward(self, x):
+        _, h = self.gru(x)
+        return self.fc(h[-1])
 
 class CNN1DClassifier(nn.Module):
     def __init__(self, n_features, n_filters, kernel_size, n_classes):
@@ -110,6 +152,32 @@ class DeepActivityModeler:
                 dropout=dropout
             )
 
+        elif model_name == "BiLSTM":
+            hidden_dim = trial.suggest_int("hidden_dim", 32, 128)
+            n_layers = trial.suggest_int("n_layers", 1, 3)
+            dropout = trial.suggest_float("dropout", 0.0, 0.5)
+
+            model = BiLSTMClassifier(
+                n_features=X.shape[1],
+                hidden_dim=hidden_dim,
+                n_layers=n_layers,
+                n_classes=n_classes,
+                dropout=dropout
+            )
+
+        elif model_name == "GRU":
+            hidden_dim = trial.suggest_int("hidden_dim", 32, 128)
+            n_layers = trial.suggest_int("n_layers", 1, 3)
+            dropout = trial.suggest_float("dropout", 0.0, 0.5)
+
+            model = GRUClassifier(
+                n_features=X.shape[1],
+                hidden_dim=hidden_dim,
+                n_layers=n_layers,
+                n_classes=n_classes,
+                dropout=dropout
+            )
+
         elif model_name == "CNN":
             n_filters = trial.suggest_int("n_filters", 16, 64)
             kernel_size = trial.suggest_int("kernel_size", 3, 7, 8)
@@ -120,6 +188,9 @@ class DeepActivityModeler:
                 kernel_size=kernel_size,
                 n_classes=n_classes
             )
+        
+        else:
+            raise ValueError(f"Unknown model name: {model_name}")
 
         model.to(self.device)
 
@@ -170,7 +241,8 @@ class DeepActivityModeler:
             curr_names.append(name)
             experiments[f"Seq: {' + '.join(curr_names)}"] = curr_cols.copy()
 
-        model_names = ["LSTM", "CNN"]
+        # Added "BiLSTM" and "GRU" to the list of models to test
+        model_names = ["LSTM", "BiLSTM", "GRU", "CNN"]
 
         for feat_name, cols in experiments.items():
             if not set(cols).issubset(self.data.columns):
@@ -201,4 +273,3 @@ class DeepActivityModeler:
         return pd.DataFrame(self.results_log).sort_values(
             "Best_F1", ascending=False
         )
-
