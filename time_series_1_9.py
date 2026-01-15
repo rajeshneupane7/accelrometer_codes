@@ -186,7 +186,7 @@ def run_timeseries_pipeline(pipeline, thresholds, resample_intervals,window_size
         )
     elif best_model=='GRU':
         model = GRUClassifier(
-            n_features=X_test.shape[1],
+            n_features=X.shape[1],
             hidden_dim=best_params["hidden_dim"],
             n_layers=best_params["n_layers"],
             n_classes=n_classes,
@@ -195,7 +195,7 @@ def run_timeseries_pipeline(pipeline, thresholds, resample_intervals,window_size
 
     elif best_model=='BiLSTM':
         model = BiLSTMClassifier(
-            n_features=X_test.shape[1],
+            n_features=X.shape[1],
             hidden_dim=best_params["hidden_dim"],
             n_layers=best_params["n_layers"],
             n_classes=n_classes,

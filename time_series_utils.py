@@ -228,9 +228,9 @@ class DeepActivityModeler:
             ("Raw Accel", ['x_g_mean', 'x_g_std', 'x_g_min', 'x_g_max',
        'y_g_mean', 'y_g_std', 'y_g_min', 'y_g_max', 'z_g_mean', 'z_g_std',
        'z_g_min', 'z_g_max']),
-            ("ODBA", ['odba_mean', 'odba_std']),
+            #("ODBA", ['odba_mean', 'odba_std']),
             #("VeDBA", ['vedba_mean', 'vedba_std']),
-            ("Magnitude", ['mag_mean', 'mag_std'])
+            #("Magnitude", ['mag_mean', 'mag_std'])
         ]
 
         experiments = {}
