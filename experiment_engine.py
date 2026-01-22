@@ -230,6 +230,7 @@ class ActivityExperimentLibrary:
         self.pipeline.calc_dynamic_features()
         df_raw = self.pipeline.df 
 
+        print("df_raw columns:", df_raw.columns.tolist())
         subjects = df_raw['subject'].unique()
         all_results = []
 

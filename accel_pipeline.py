@@ -11,13 +11,6 @@ class AccelPipeline:
                  max_accel_clip: float = 5.0):
         """
         Initialize the pipeline.
-        
-        Args:
-            df (pd.DataFrame): Directly pass a dataframe.
-            data_dir (str): Path to data.
-            calc_odba (bool): Calculate ODBA.
-            calc_vedba (bool): Calculate VeDBA.
-            max_accel_clip (float): Clip acceleration values to remove noise spikes.
         """
         if df is not None:
             self.df = df.copy()
@@ -37,7 +30,7 @@ class AccelPipeline:
         # Sort by Subject THEN Time
         self.df = self.df.sort_values(by=['subject', 'local_ts']).reset_index(drop=True)
         
-        # FIX: Remove duplicates to ensure unique index for rolling/transfrom operations
+        # Remove duplicates to ensure clean merging
         print("Removing duplicate timestamps...")
         initial_len = len(self.df)
         self.df = self.df.drop_duplicates(subset=['subject', 'local_ts'], keep='first')
@@ -107,7 +100,6 @@ class AccelPipeline:
     def _get_dynamic_component(self, window_seconds=1):
         """
         Subtracts static gravity.
-        Note: Works on irregularly sampled data by using the timestamp index.
         """
         temp_df = self.df.set_index('local_ts').sort_index()
         cols = ['x_g', 'y_g', 'z_g']
@@ -126,7 +118,7 @@ class AccelPipeline:
         return dynamic_df.fillna(0)
 
     def calc_dynamic_features(self):
-        """Calculates ODBA, VeDBA, and ZCR (Zero Crossing Rate)."""
+        """Calculates ODBA and VeDBA. ZCR is now calculated during resampling."""
         dyn = self._get_dynamic_component()
         
         if self.calc_odba:
@@ -134,19 +126,7 @@ class AccelPipeline:
         if self.calc_vedba:
             self.df['vedba'] = np.sqrt(dyn['x_d']**2 + dyn['y_d']**2 + dyn['z_d']**2)
             
-        # Calculate Zero Crossing Rate (ZCR)
-        print("--- Calculating ZCR (Zero Crossing Rate) ---")
-        
-        def calc_zcr(series):
-            # Simple approximation for pandas rolling
-            return (np.diff(np.sign(series)) != 0).sum()
-
-        # Calculate ZCR on the magnitude signal over 1-second windows
-        temp_df = self.df.set_index('local_ts')
-        self.df['zcr'] = temp_df.groupby('subject')['mag'].transform(
-            lambda x: x.rolling('1s', min_periods=1).apply(calc_zcr, raw=False)
-        ).fillna(0)
-        
+        # ZCR removed from here to improve performance
         return self.df
 
     def resample_and_label(self, df: pd.DataFrame, interval_seconds=10, coherence_threshold=0.7):
@@ -163,12 +143,26 @@ class AccelPipeline:
                 return counts.index[0]
             return np.nan 
 
+        # --- OPTIMIZED ZCR FUNCTION ---
+        def calculate_zcr(series):
+            """
+            Calculates Zero Crossing Rate for the entire window.
+            Fast numpy implementation.
+            """
+            if len(series) < 2:
+                return 0
+            # Subtract mean to detect crossings relative to the signal's center
+            mean_val = np.mean(series)
+            signed_diff = np.sign(series - mean_val)
+            # Count where sign changes
+            return (np.diff(signed_diff) != 0).sum()
+
         agg_dict = {
             'x_g': ['mean', 'std', 'min', 'max'],
             'y_g': ['mean', 'std', 'min', 'max'],
             'z_g': ['mean', 'std', 'min', 'max'],
             'mag': ['mean', 'std'],
-            'zcr': ['mean'], # Add ZCR to features
+            'zcr': calculate_zcr, # Add ZCR calculation here (Fast)
             'behavioral_category': label_aggregator
         }
         
@@ -184,7 +178,18 @@ class AccelPipeline:
             .agg(agg_dict)
         )
         
-        resampled.columns = [f"{c[0]}_{c[1]}" if c[1] else c[0] for c in resampled.columns]
+        # Flatten columns
+        # If agg returns a name (function name), use it. If None (string), use string.
+        new_cols = []
+        for col in resampled.columns:
+            if col[1] == '':
+                new_cols.append(col[0])
+            elif col[1] == '<lambda>': # Python < 3.9 sometimes names lambdas this way
+                new_cols.append(f"{col[0]}_func")
+            else:
+                new_cols.append(f"{col[0]}_{col[1]}")
+                
+        resampled.columns = new_cols
         resampled = resampled.rename(columns={'behavioral_category_label_aggregator': 'behavioral_category'})
         
         final_df = resampled.dropna(subset=['behavioral_category']).reset_index()
