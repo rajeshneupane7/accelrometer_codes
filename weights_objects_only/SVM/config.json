@@ -1,0 +1,33 @@
+{
+    "model_type": "SVM",
+    "trial_number": 498,
+    "model_family": "Classical",
+    "feature_set": "base_plus_enmo",
+    "window": 25,
+    "thresh": 0.75,
+    "steps": NaN,
+    "rf_n_estimators": NaN,
+    "rf_max_depth": NaN,
+    "xgb_n_estimators": NaN,
+    "xgb_lr": NaN,
+    "xgb_max_depth": NaN,
+    "svm_C": 12.802887282190364,
+    "svm_kernel": "linear",
+    "nb_var_smoothing": NaN,
+    "ts_hidden_dim": NaN,
+    "ts_lr": NaN,
+    "ts_batch_size": NaN,
+    "avg_accuracy": 0.9163,
+    "avg_precision": 0.8956,
+    "avg_recall": 0.8163,
+    "avg_f1_macro": 0.839,
+    "pooled_test_distribution": "{np.int64(1): 4382, np.int64(2): 407, np.int64(0): 2400}",
+    "feature_columns": [
+        "y_g_mean",
+        "y_g_std",
+        "mag_mean",
+        "mag_std",
+        "enmo_mean",
+        "enmo_max"
+    ]
+}

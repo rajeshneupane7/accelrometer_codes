@@ -1,0 +1,33 @@
+{
+    "model_type": "XGBoost",
+    "trial_number": 285,
+    "model_family": "Classical",
+    "feature_set": "base_plus_enmo",
+    "window": 25,
+    "thresh": 0.75,
+    "steps": NaN,
+    "rf_n_estimators": NaN,
+    "rf_max_depth": NaN,
+    "xgb_n_estimators": 250.0,
+    "xgb_lr": 0.0173024995366407,
+    "xgb_max_depth": 8.0,
+    "svm_C": NaN,
+    "svm_kernel": null,
+    "nb_var_smoothing": NaN,
+    "ts_hidden_dim": NaN,
+    "ts_lr": NaN,
+    "ts_batch_size": NaN,
+    "avg_accuracy": 0.9094,
+    "avg_precision": 0.8681,
+    "avg_recall": 0.7982,
+    "avg_f1_macro": 0.8143,
+    "pooled_test_distribution": "{np.int64(1): 4382, np.int64(2): 407, np.int64(0): 2400}",
+    "feature_columns": [
+        "y_g_mean",
+        "y_g_std",
+        "mag_mean",
+        "mag_std",
+        "enmo_mean",
+        "enmo_max"
+    ]
+}
