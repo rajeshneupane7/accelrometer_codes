@@ -23,8 +23,6 @@
     "avg_f1_macro": 0.7249,
     "pooled_test_distribution": "{np.int64(1): 7468, np.int64(2): 895, np.int64(0): 4150}",
     "feature_columns": [
-        "y_g_mean",
-        "y_g_std",
         "mag_mean",
         "mag_std",
         "enmo_mean",
